@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<header th:fragment="headerFragment">
+<header th:fragment="headerFragment" class="site-header">
     <h1 class="company-name">Big XP Bowl</h1>
 
     <style>
@@ -10,6 +10,13 @@
             font-size: 28px;
             font-family: Arial, sans-serif;
             color: dodgerblue;
+        }
+        .site-header {
+            width: 100%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-bottom: 3px solid #333; /* Line showing where header ends */
+            box-sizing: border-box;
         }
     </style>
 </header>

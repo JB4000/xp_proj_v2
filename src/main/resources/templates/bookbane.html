@@ -14,6 +14,7 @@
             --card-background-color: #b1b9cc;
         }
 
+
         body {
             font-family: Arial, sans-serif;
             background: var(--body-background-color);
@@ -121,8 +122,8 @@
 </head>
 
 <body>
-
-<div class="header" th:replace="fragments/header :: headerFragment"></div>
+<div class ="frame">
+    <div th:replace="fragments/header :: headerFragment"></div>
     <div class="main">
 
         <main class="content">
@@ -187,11 +188,8 @@
 
         </main>
 
-
-
     </div>
-
-<footer class="footer" th:replace="fragments/footer :: footerFragment"></footer>
+    <div th:replace="fragments/footer :: footerFragment"></div>
 
 </div>
 </body>
