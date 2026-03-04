@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Book bord</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            border: 2px solid black;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid black;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group label {
+            width: 45%;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 50%;
+            padding: 5px;
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .buttons button {
+            padding: 8px 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 2px solid black;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-$END$
+
+<div class="container">
+    <div class="header">
+        Book bord
+    </div>
+
+    <div class="form-content">
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="dato">Dato:</label>
+                <input type="date" id="dato" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tid">Tid:</label>
+                <input type="time" id="tid" required>
+            </div>
+
+            <div class="form-group">
+                <label for="navn">Navn:</label>
+                <input type="text" id="navn" required>
+            </div>
+
+            <div class="form-group">
+                <label for="antal">Antal personer:</label>
+                <input type="number" id="antal" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gmail">Gmail:</label>
+                <input type="email" id="gmail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="note">Note:</label>
+                <textarea id="note"></textarea>
+            </div>
+
+            <div class="buttons">
+                <button type="submit">Bekræft</button>
+                <button type="reset">Annuller</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <a href="/">Tilbage</a>
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Stop automatisk reload
+
+        let confirmation = confirm("Er du sikker på, at du vil bekræfte reservationen?");
+
+        if (confirmation) {
+            alert("Reservation bekræftet!");
+            this.reset(); // Nulstil formular efter bekræftelse
+        } else {
+            alert("Reservation annulleret.");
+        }
+    });
+</script>
+
 </body>
-</html>
+</html>l>

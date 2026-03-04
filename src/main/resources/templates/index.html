@@ -1,10 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8"/>
+    <title>Start page / index</title>
+
+    <style>
+
+        :root {
+            --body-background-color: #dce8e6;
+            --frame-background-color: #c2d3db;
+            --border-color: #000000;
+            --button-background-color: #b1b9bb;
+            --card-background-color: #b1b9cc;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+            background: var(--body-background-color);
+            overflow: hidden;
+            background-image: url("../images/bowlingpins.jpg");
+            background-size: cover;
+            background-position: 70% 37%;
+            background-repeat: no-repeat;
+
+
+        }
+
+        .frame {
+            width: 90vw;
+            margin: 40px;
+            border: 2px solid var(--border-color);
+            background: var(--frame-background-color);
+        }
+
+        .header {
+            height: 10vh;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            font-weight: bold;
+        }
+
+        .footer {
+            height: 10vh;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            font-weight: bold;
+        }
+
+        .main {
+            display: flex;
+            min-height: 65vh;
+
+        }
+
+        .content {
+            flex: 1;
+            padding: 1em 2em;
+
+
+        }
+
+        .list-scroll-container {
+            display: block;
+            height: 40vh;
+            overflow: scroll;
+        }
+
+        .content h1 {
+            text-align: center;
+
+        }
+
+        .datetimeline {
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .typeline {
+            font-size: 0.8rem;
+            text-align: left;
+
+        }
+
+        .reservation-card {
+            display: block;
+            background: var(--card-background-color);
+            margin: 0.5em;
+            padding: 0.2em;
+
+        }
+
+        .sidebar {
+            width: 15vw;
+            border-left: 2px solid var(--border-color);
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .sidebar button {
+            padding: 1em 2em;
+            border: 2px solid var(--border-color);
+            background: var(--button-background-color);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+
+            text-align: left;
+        }
+
+    </style>
 </head>
 <body>
-$END$
+
+
+<div class="frame">
+
+    <div class="header">
+
+    </div>
+
+    <div class="main">
+
+        <main class="content">
+            <h1>Oversigt</h1>
+
+            <div class="list-scroll-container">
+
+                <div th:each="reservation : ${reservations}">
+
+                    <div class="reservation-card">
+                        <p class="datetimeline"
+                           th:text="${reservation.date + ' - ' + reservation.time + ' - ' + reservation.name}">
+                        </p>
+
+                        <p class="typeline"
+                           th:text="${reservation.type + '  -  Baner: ' + reservation.lanes}">
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <nav class="sidebar">
+            <a th:href="@{/lanes}">
+                <button>Book bane</button>
+            </a>
+            <a th:href="@{/}">
+                <button>Book bord</button>
+            </a>
+            <a th:href="@{/}">
+                <button>Drift</button>
+            </a>
+            <a th:href="@{/}">
+                <button>Driftsliste</button>
+            </a>
+        </nav>
+
+    </div>
+
+    <footer class="footer">
+
+    </footer>
+
+</div>
+
+
 </body>
-</html>
+</html>ml>

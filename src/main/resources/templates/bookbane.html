@@ -1,10 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8"/>
+    <title>Booking Form</title>
+
+    <style>
+
+        :root {
+            --body-background-color: #dce8e6;
+            --frame-background-color: #c2d3db;
+            --border-color: #000000;
+            --button-background-color: #b1b9bb;
+            --card-background-color: #b1b9cc;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--body-background-color);
+            overflow: hidden;
+            background-image: url("../images/bowlingpins.jpg");
+            background-size: cover;
+            background-position: 70% 37%;
+            background-repeat: no-repeat;
+        }
+
+        .frame {
+            width: 90vw;
+            margin: 3em;
+            border: 2px solid var(--border-color);
+            background: var(--frame-background-color);
+            height: 87vh;
+        }
+
+        .header {
+            height: 10vh;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .footer {
+            height: 10vh;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main {
+            display: flex;
+            min-height: 55vh;
+        }
+
+        .content {
+            flex: 1;
+            padding: 1em;
+        }
+
+        .content h1 {
+            text-align: center;
+        }
+
+
+
+        .form-container {
+            max-width: 60vw;
+            margin: auto;
+        }
+
+        .form-dropdown {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-dropdown select {
+            padding: 0.5em;
+            border: 2px solid var(--border-color);
+            background: var(--card-background-color);
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.4em;
+        }
+
+        .form-row label {
+            width: 6em;
+            font-weight: bold;
+        }
+
+        .form-row input {
+            flex: 1;
+            padding: 0.1rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 0.3em;
+        }
+
+        .form-actions button {
+            padding: 0.8em 2em;
+            border: 2px solid var(--border-color);
+            background: var(--button-background-color);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+
+
+
+
+    </style>
 </head>
+
 <body>
-$END$
+
+<div class="frame">
+
+    <div class="header">
+
+    </div>
+
+    <div class="main">
+
+        <main class="content">
+
+            <h1>Book bane</h1>
+
+            <div class="form-container">
+
+                <form>
+
+                    <div class="form-dropdown">
+                        <select name="type">
+                            <option value="">Type af booking</option>
+                            <option value="bowling">Bowlingbane</option>
+                            <option value="bowling_kids">bowlingbane til børn</option>
+                            <option value="airhockey">Airhockey</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="date">Dato:</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="time">Tidspunkt:</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="lanes">Baner:</label>
+                        <input type="text" id="lanes" name="lanes">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="name">Navn:</label>
+                        <input type="number" id="name" name="name">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="tel">Tlf:</label>
+                        <input type="tel" id="tel" name="tel">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="note">Note:</label>
+                        <input type="text" id="note" name="note">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit">Bekræft</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+
+
+    </div>
+
+    <footer class="footer">
+    </footer>
+
+</div>
+
 </body>
 </html>
