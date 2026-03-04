@@ -11,6 +11,7 @@
             --frame-background-color: #c2d3db;
             --border-color: #000000;
             --button-background-color: #b1b9bb;
+            --button-hoover-color: #7d99a1;
             --card-background-color: #b1b9cc;
         }
 
@@ -30,7 +31,6 @@
             margin: 3em;
             border: 2px solid var(--border-color);
             background: var(--frame-background-color);
-            height: 87vh;
         }
 
     /*    .header {
@@ -75,12 +75,14 @@
             margin-bottom: 20px;
             display: flex;
             justify-content: center;
+
         }
 
         .form-dropdown select {
             padding: 0.5em;
             border: 2px solid var(--border-color);
             background: var(--card-background-color);
+            width: 15vw;
         }
 
         .form-row {
@@ -106,12 +108,17 @@
         }
 
         .form-actions button {
+            width: 15vw;
             padding: 0.8em 2em;
             border: 2px solid var(--border-color);
             background: var(--button-background-color);
             font-weight: bold;
             cursor: pointer;
             border-radius: 5px;
+        }
+
+        .form-actions button:hover {
+            background-color: var(--button-hoover-color);
         }
 
 
@@ -160,7 +167,7 @@
 
                     <div class="form-row">
                         <label for="name">Navn:</label>
-                        <input type="number" id="name" name="name">
+                        <input type="text" id="name" name="name">
                     </div>
 
                     <div class="form-row">
