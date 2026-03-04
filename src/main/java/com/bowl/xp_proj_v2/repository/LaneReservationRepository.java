@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ReservationRepository {
+public class LaneReservationRepository {
 
     private final List<LaneReservation> reservationList;
 
 
-    public ReservationRepository() {
+    public LaneReservationRepository() {
         this.reservationList = new ArrayList<>();
         initDataReservations();
 
@@ -24,6 +24,11 @@ public class ReservationRepository {
 
     public List<LaneReservation> getAllReservations() {
         return new ArrayList<>(reservationList);
+    }
+
+    public void saveLaneReservation(LaneReservation laneReservation) {
+        reservationList.add(laneReservation);
+
     }
 
 

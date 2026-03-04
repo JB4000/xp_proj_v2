@@ -139,14 +139,14 @@
 
             <div class="form-container">
 
-                <form>
+                <form th:action="@{/lanes}" method="post">
 
                     <div class="form-dropdown">
                         <select name="type">
                             <option value="">Type af booking</option>
-                            <option value="bowling">Bowlingbane</option>
-                            <option value="bowling_kids">bowlingbane til børn</option>
-                            <option value="airhockey">Airhockey</option>
+                            <option value="BOWLING">Bowlingbane</option>
+                            <option value="BOWLING_KIDS">bowlingbane til børn</option>
+                            <option value="AIRHOCKEY">Airhockey</option>
                         </select>
                     </div>
 
