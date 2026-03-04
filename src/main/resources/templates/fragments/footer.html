@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footerFragment" class="site-footer">
+    <button class="back-button" th:onclick="|window.location.href='@{/}'|">Tilbage</button>
+    <style>
+        .site-footer {
+            position: relative;
+            width: 100%;
+            padding: 40px 20px;
+            border-top: 3px solid grey;
+            background-color: #ffffff;
+            box-sizing: border-box;
+        }
+
+        .back-button {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: dodgerblue;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: darkred;
+        }
+    </style>
+</footer>
+</body>
+</html>

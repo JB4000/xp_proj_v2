@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <title>Booking Form</title>
@@ -32,7 +32,7 @@
             height: 87vh;
         }
 
-        .header {
+    /*    .header {
             height: 10vh;
             border-bottom: 2px solid var(--border-color);
             display: flex;
@@ -48,7 +48,7 @@
             align-items: center;
             justify-content: center;
         }
-
+*/
         .main {
             display: flex;
             min-height: 55vh;
@@ -122,12 +122,7 @@
 
 <body>
 
-<div class="frame">
-
-    <div class="header">
-
-    </div>
-
+<div class="header" th:replace="fragments/header :: headerFragment"></div>
     <div class="main">
 
         <main class="content">
@@ -196,10 +191,8 @@
 
     </div>
 
-    <footer class="footer">
-    </footer>
+<footer class="footer" th:replace="fragments/footer :: footerFragment"></footer>
 
 </div>
-
 </body>
 </html>
