@@ -2,7 +2,9 @@ package com.bowl.xp_proj_v2.controller;
 
 import com.bowl.xp_proj_v2.model.TableReservationDto;
 import com.bowl.xp_proj_v2.service.TableReservationService;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,5 +29,7 @@ public class TableReservationController {
     public String tableReservationSave(@ModelAttribute TableReservationDto tableReservationDto) {
         tableReservationService.savetableReservation(tableReservationDto);
         return "redirect:/";
+
     }
 }
+

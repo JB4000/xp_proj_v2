@@ -3,129 +3,220 @@
 <head>
     <meta charset="utf-8"/>
     <title>Start page / index</title>
+ <style>
+    :root {
+    --neon-pink: #ff2fd1;
+    --neon-blue: #00e5ff;
+    --neon-purple: #7c3aed;
+    --neon-green: #00ff9c;
+    --dark-bg: #0f0f1a;
+    --card-dark: rgba(255, 255, 255, 0.06);
+    --glass: rgba(255, 255, 255, 0.08);
+    }
 
-    <style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
 
-        :root {
-            --body-background-color: #dce8e6;
-            --frame-background-color: #c2d3db;
-            --border-color: #000000;
-            --button-background-color: #b1b9bb;
-            --button-hoover-color: #7d99a1;
-            --card-background-color: #b1b9cc;
-        }
+    body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    overflow: hidden;
+    background: linear-gradient(
+    rgba(5, 5, 15, 0.85),
+    rgba(5, 5, 15, 0.95)
+    ),
+    url("../images/bowlingpins.jpg");
 
-        body {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    }
 
-            font-family: Arial, sans-serif;
-            background: var(--body-background-color);
-            overflow: hidden;
-            background-image: url("../images/bowlingpins.jpg");
-            background-size: cover;
-            background-position: 70% 37%;
-            background-repeat: no-repeat;
+    /* FRAME */
 
+    .frame {
+    width: 94vw;
+    height: 92vh;
+    margin: 4vh auto;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    background: var(--glass);
+    box-shadow:
+    0 0 60px rgba(0, 229, 255, 0.3),
+    0 0 120px rgba(255, 47, 209, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    }
 
-        }
+    /* MAIN LAYOUT */
 
-        .frame {
-            width: 90vw;
-            margin: 3em;
-            border: 2px solid var(--border-color);
-            background: var(--frame-background-color);
-            height: 80vh;
-        }
+    .main {
+    display: flex;
+    flex: 1;
+    }
 
-        /*.header {*/
-        /*    height: 10vh;*/
-        /*    border-bottom: 2px solid var(--border-color);*/
-        /*    display: flex;*/
-        /*    align-items: center;*/
-        /*    justify-content: center;*/
-        /*    padding: 0 20px;*/
-        /*    font-weight: bold;*/
-        /*}*/
+    /* CONTENT */
 
-        .footer {
-            height: 10vh;
-            border-top: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2px 20px;
-            font-weight: bold;
-            background-color: #9fbdcc;
+    .content {
+    flex: 1;
+    padding: 3rem;
+    position: relative;
+    }
 
-        }
+    .content h1 {
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2.5rem;
+    animation: glowText 3s ease-in-out infinite alternate;
+    }
 
-        .main {
-            display: flex;
-            min-height: 65vh;
+    @keyframes glowText {
+    from {
+    text-shadow: 0 0 10px var(--neon-pink);
+    }
+    to {
+    text-shadow: 0 0 25px var(--neon-blue);
+    }
+    }
 
-        }
+    /* SCROLL AREA */
 
-        .content {
-            flex: 1;
-            padding: 1em 2em;
+    .list-scroll-container {
+    height: 55vh;
+    overflow-y: auto;
+    padding-right: 10px;
+    }
 
+    /* Custom neon scrollbar */
 
-        }
+    .list-scroll-container::-webkit-scrollbar {
+    width: 8px;
+    }
 
-        .list-scroll-container {
-            display: block;
-            height: 40vh;
-            overflow: scroll;
-        }
+    .list-scroll-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--neon-pink), var(--neon-blue));
+    border-radius: 10px;
+    }
 
-        .content h1 {
-            text-align: center;
+    /* RESERVATION CARDS */
 
-        }
+    .reservation-card {
+    background: var(--card-dark);
+    padding: 1.2rem 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 1.2rem;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--neon-blue);
+    position: relative;
+    overflow: hidden;
+    }
 
-        .datetimeline {
-            font-size: 1rem;
-            text-align: left;
-        }
+    .reservation-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+    );
+    transform: translateX(-100%);
+    transition: 0.6s;
+    }
 
-        .typeline {
-            font-size: 0.8rem;
-            text-align: left;
+    .reservation-card:hover::before {
+    transform: translateX(100%);
+    }
 
+    .reservation-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+    0 0 15px var(--neon-blue),
+    0 0 30px var(--neon-purple);
+    }
 
-        }
+    /* TEXT STYLES */
 
-        .reservation-card {
-            display: block;
-            background: var(--card-background-color);
-            margin: 0.5em;
-            padding: 0.2em;
+    .datetimeline {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    }
 
-        }
+    .typeline {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    }
 
-        .sidebar {
-            width: 15vw;
-            border-left: 2px solid var(--border-color);
-            padding: 2em;
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-        }
+    /* SIDEBAR */
 
-        .sidebar button {
-            width: 15vw;
-            padding: 10px 15px;
-            border: 2px solid var(--border-color);
-            background: var(--button-background-color);
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
+    .sidebar {
+    width: 260px;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: linear-gradient(
+    180deg,
+    #14142b,
+    #0d0d1a
+    );
+    border-left: 1px solid rgba(255,255,255,0.1);
+    }
 
-            text-align: left;
-        }
+    /* NEON BUTTONS */
 
-        .sidebar button:hover {
-            background-color: var(--button-hoover-color);
-        }
+    .sidebar a {
+    text-decoration: none;
+    }
+
+    .sidebar button {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: 2px solid var(--neon-blue);
+    background: transparent;
+    color: var(--neon-blue);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    }
+
+    .sidebar button:hover {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow:
+    0 0 15px var(--neon-blue),
+    0 0 30px var(--neon-blue);
+    transform: translateX(8px);
+    }
+
+    /* FOOTER */
+
+    .footer {
+    height: 60px;
+    background: linear-gradient(
+    90deg,
+    var(--neon-pink),
+    var(--neon-purple),
+    var(--neon-blue)
+    );
+    opacity: 0.2;
+    }
 
     </style>
 </head>
@@ -169,7 +260,7 @@
             <a th:href="@{/maintenance}">
                 <button>Drift</button>
             </a>
-            <a th:href="@{/}">
+            <a th:href="@{/maintenancelist}">
                 <button>Driftsliste</button>
             </a>
         </nav>
