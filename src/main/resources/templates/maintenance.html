@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drift</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    .container {
+      width: 90%;
+      height: 90vh;
+      margin: 5vh auto;
+      background: white;
+      border: 3px solid #000;
+      border-radius: 20px;
+      padding: 40px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: none;
+      height: 250px;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      margin-top: auto;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid #000;
+      background-color: #e0e0e0;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .btn:hover {
+      background-color: #d0d0d0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">DRIFT</div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="titel">Titel</label>
+      <input type="text" id="titel">
+    </div>
+
+    <div class="form-group">
+      <label for="dato">Dato</label>
+      <input type="date" id="dato">
+    </div>
+  </div>
+
+  <label for="beskrivelse">Skriv her...</label>
+  <textarea id="beskrivelse"></textarea>
+
+  <div class="buttons">
+    <button class="btn">BEKRÆFT</button>
+    <a href="index.html" class="btn">TILBAGE</button></a>
+
+  </div>
+</div>
+
+</body>
+</html>
