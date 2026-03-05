@@ -25,6 +25,9 @@ public class LaneReservation {
         this.type = type;
     }
 
+    public LaneReservation(LocalDate parse, LocalTime parse1, int numberOfPeople, String name, String email) {
+    }
+
     public LocalDate getDate() {
         return date;
     }
