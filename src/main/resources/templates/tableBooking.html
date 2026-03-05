@@ -1,52 +1,222 @@
-<!DOCTYPE html>
-<html lang="da">
+<!--<!DOCTYPE html>-->
+<!--<html lang="da">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Book bord</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f4;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--            margin: 0;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            background-color: white;-->
+<!--            width: 400px;-->
+<!--            border: 2px solid black;-->
+<!--        }-->
+
+<!--        .header {-->
+<!--            text-align: center;-->
+<!--            padding: 20px;-->
+<!--            border-bottom: 2px solid black;-->
+<!--            font-size: 22px;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        .form-content {-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        .form-group {-->
+<!--            margin-bottom: 15px;-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .form-group label {-->
+<!--            width: 45%;-->
+<!--        }-->
+
+<!--        .form-group input,-->
+<!--        .form-group textarea {-->
+<!--            width: 50%;-->
+<!--            padding: 5px;-->
+<!--        }-->
+
+<!--        textarea {-->
+<!--            resize: none;-->
+<!--            height: 60px;-->
+<!--        }-->
+
+<!--        .buttons {-->
+<!--            text-align: center;-->
+<!--            margin-top: 10px;-->
+<!--        }-->
+
+<!--        .buttons button {-->
+<!--            padding: 8px 16px;-->
+<!--            cursor: pointer;-->
+<!--            margin: 5px;-->
+<!--        }-->
+
+<!--        .footer {-->
+<!--            text-align: center;-->
+<!--            padding: 15px;-->
+<!--            border-top: 2px solid black;-->
+<!--        }-->
+
+<!--        .footer a {-->
+<!--            text-decoration: none;-->
+<!--            color: black;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <div class="header">-->
+<!--        Book bord-->
+<!--    </div>-->
+
+<!--    <div class="form-content">-->
+<!--        <form id="bookingForm">-->
+<!--            <div class="form-group">-->
+<!--                <label for="dato">Dato:</label>-->
+<!--                <input type="date" id="dato" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="tid">Tid:</label>-->
+<!--                <input type="time" id="tid" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="navn">Navn:</label>-->
+<!--                <input type="text" id="navn" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="antal">Antal personer:</label>-->
+<!--                <input type="number" id="antal" min="1" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="gmail">Gmail:</label>-->
+<!--                <input type="email" id="gmail" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="note">Note:</label>-->
+<!--                <textarea id="note"></textarea>-->
+<!--            </div>-->
+
+<!--            <div class="buttons">-->
+<!--                <button type="submit">Bekræft</button>-->
+<!--                <button type="reset">Annuller</button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    <div class="footer">-->
+<!--        <a href="/">Tilbage</a>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--<script>-->
+<!--    document.getElementById("bookingForm").addEventListener("submit", function(event) {-->
+<!--        event.preventDefault(); // Stop automatisk reload-->
+
+<!--        let confirmation = confirm("Er du sikker på, at du vil bekræfte reservationen?");-->
+
+<!--        if (confirmation) {-->
+<!--            alert("Reservation bekræftet!");-->
+<!--            this.reset(); // Nulstil formular efter bekræftelse-->
+<!--        } else {-->
+<!--            alert("Reservation annulleret.");-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+<!--<div th:replace="fragments/footer :: footerFragment"></div>-->
+<!--</body>-->
+<!--</html>l>-->
+
+<!doctype html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Book bord</title>
+
     <style>
+
+        :root {
+            --body-background-color: #dce8e6;
+            --frame-background-color: #c2d3db;
+            --border-color: #000000;
+            --button-background-color: #b1b9bb;
+            --button-hoover-color: #7d99a1;
+            --card-background-color: #b1b9cc;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background: var(--body-background-color);
+            overflow: hidden;
+            background-image: url("../static/images/bowlingpins.jpg");
+            background-size: cover;
+            background-position: 70% 37%;
+            background-repeat: no-repeat;
+        }
+
+        .frame {
+            width: 90vw;
+            margin: 3em;
+            border: 2px solid var(--border-color);
+            background: var(--frame-background-color);
+        }
+
+        .main {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 55vh;
         }
 
-        .container {
-            background-color: white;
-            width: 400px;
-            border: 2px solid black;
+        .content {
+            flex: 1;
+            padding: 1em;
         }
 
-        .header {
+        .content h1 {
             text-align: center;
-            padding: 20px;
-            border-bottom: 2px solid black;
-            font-size: 22px;
+        }
+
+        .form-container {
+            max-width: 60vw;
+            margin: auto;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5em;
+        }
+
+        .form-row label {
+            width: 10em;
             font-weight: bold;
         }
 
-        .form-content {
-            padding: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .form-group label {
-            width: 45%;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 50%;
-            padding: 5px;
+        .form-row input,
+        .form-row textarea {
+            flex: 1;
+            padding: 0.2rem;
+            border: 2px solid var(--border-color);
         }
 
         textarea {
@@ -54,91 +224,116 @@
             height: 60px;
         }
 
-        .buttons {
+        .form-actions {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 1em;
         }
 
-        .buttons button {
-            padding: 8px 16px;
+        .form-actions button {
+            width: 12vw;
+            padding: 0.8em;
+            border: 2px solid var(--border-color);
+            background: var(--button-background-color);
+            font-weight: bold;
             cursor: pointer;
+            border-radius: 5px;
             margin: 5px;
         }
 
-        .footer {
-            text-align: center;
-            padding: 15px;
-            border-top: 2px solid black;
+        .form-actions button:hover {
+            background-color: var(--button-hoover-color);
         }
 
-        .footer a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
+        .back-link {
+            text-align: center;
+            margin-top: 1em;
         }
+
+        .back-link a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="header">
-        Book bord
+<div class="frame">
+
+    <div th:replace="fragments/header :: headerFragment"></div>
+
+    <div class="main">
+
+        <main class="content">
+
+            <h1>Book bord</h1>
+
+            <div class="form-container">
+
+                <form id="bookingForm">
+
+                    <div class="form-row">
+                        <label for="dato">Dato:</label>
+                        <input type="date" id="dato" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="tid">Tid:</label>
+                        <input type="time" id="tid" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="navn">Navn:</label>
+                        <input type="text" id="navn" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="antal">Antal personer:</label>
+                        <input type="number" id="antal" min="1" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="gmail">Email:</label>
+                        <input type="email" id="gmail" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="note">Note:</label>
+                        <textarea id="note"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit">Bekræft</button>
+                        <button type="reset">Annuller</button>
+                    </div>
+
+                </form>
+
+                <div class="back-link">
+                    <a href="/">Tilbage</a>
+                </div>
+
+            </div>
+
+        </main>
+
     </div>
 
-    <div class="form-content">
-        <form id="bookingForm">
-            <div class="form-group">
-                <label for="dato">Dato:</label>
-                <input type="date" id="dato" required>
-            </div>
 
-            <div class="form-group">
-                <label for="tid">Tid:</label>
-                <input type="time" id="tid" required>
-            </div>
-
-            <div class="form-group">
-                <label for="navn">Navn:</label>
-                <input type="text" id="navn" required>
-            </div>
-
-            <div class="form-group">
-                <label for="antal">Antal personer:</label>
-                <input type="number" id="antal" min="1" required>
-            </div>
-
-            <div class="form-group">
-                <label for="gmail">Gmail:</label>
-                <input type="email" id="gmail" required>
-            </div>
-
-            <div class="form-group">
-                <label for="note">Note:</label>
-                <textarea id="note"></textarea>
-            </div>
-
-            <div class="buttons">
-                <button type="submit">Bekræft</button>
-                <button type="reset">Annuller</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="footer">
-        <a href="/">Tilbage</a>
-    </div>
 
 </div>
 
 <script>
     document.getElementById("bookingForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Stop automatisk reload
+        event.preventDefault();
 
         let confirmation = confirm("Er du sikker på, at du vil bekræfte reservationen?");
 
         if (confirmation) {
             alert("Reservation bekræftet!");
-            this.reset(); // Nulstil formular efter bekræftelse
+            this.reset();
         } else {
             alert("Reservation annulleret.");
         }
@@ -146,4 +341,4 @@
 </script>
 <div th:replace="fragments/footer :: footerFragment"></div>
 </body>
-</html>l>
+</html>
