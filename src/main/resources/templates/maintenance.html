@@ -1,23 +1,158 @@
+<!--<!DOCTYPE html>
+    <html lang="da">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drift</title>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+            }
+
+            .container {
+                width: 90%;
+                height: 90vh;
+                margin: 5vh auto;
+                background: white;
+                border: 3px solid #000;
+                border-radius: 20px;
+                padding: 40px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .header {
+                text-align: center;
+                font-size: 40px;
+                font-weight: bold;
+                margin-bottom: 40px;
+            }
+
+            .form-row {
+                display: flex;
+                justify-content: space-between;
+                gap: 40px;
+                margin-bottom: 30px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            label {
+                margin-bottom: 8px;
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            input, textarea {
+                padding: 12px;
+                border: 2px solid #000;
+                border-radius: 10px;
+                font-size: 16px;
+            }
+
+            textarea {
+                resize: none;
+                height: 250px;
+                margin-bottom: 40px;
+            }
+
+            .buttons {
+                margin-top: auto;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 18px;
+                font-size: 18px;
+                font-weight: bold;
+                border: 2px solid #000;
+                background-color: #e0e0e0;
+                cursor: pointer;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .btn:hover {
+                background-color: #d0d0d0;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="container">
+        <div class="header">DRIFT</div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="titel">Titel</label>
+                <input type="text" id="titel">
+            </div>
+
+            <div class="form-group">
+                <label for="dato">Dato</label>
+                <input type="date" id="dato">
+            </div>
+        </div>
+
+        <label for="beskrivelse">Skriv her...</label>
+        <textarea id="beskrivelse"></textarea>
+
+        <div class="buttons">
+            <button class="btn">BEKRÆFT</button>
+            <a href="index.html" class="btn">TILBAGE</a>
+
+        </div>
+    </div>
+
+    </body>
+    </html>
+
+-->
+
+
+
+
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Drift</title>
 
   <style>
+    :root {
+      --body-background-color: #dce8e6;
+      --frame-background-color: #c2d3db;
+      --border-color: #000000;
+      --button-background-color: #b1b9bb;
+      --button-hoover-color: #7d99a1;
+      --card-background-color: #b1b9cc;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background: var(--body-background-color);
+      overflow: hidden;
+      background-image: url("../static/images/bowlingpins.jpg");
+      background-size: cover;
+      background-position: 70% 37%;
+      background-repeat: no-repeat;
       margin: 0;
     }
 
-    .container {
-      width: 90%;
-      height: 90vh;
-      margin: 5vh auto;
-      background: white;
-      border: 3px solid #000;
+    .frame {
+      width: 90vw;
+      margin: 3em auto;
+      border: 2px solid var(--border-color);
+      background: var(--frame-background-color);
       border-radius: 20px;
       padding: 40px;
       box-sizing: border-box;
@@ -53,7 +188,7 @@
 
     input, textarea {
       padding: 12px;
-      border: 2px solid #000;
+      border: 2px solid var(--border-color);
       border-radius: 10px;
       font-size: 16px;
     }
@@ -66,6 +201,9 @@
 
     .buttons {
       margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .btn {
@@ -73,43 +211,48 @@
       padding: 18px;
       font-size: 18px;
       font-weight: bold;
-      border: 2px solid #000;
-      background-color: #e0e0e0;
+      border: 2px solid var(--border-color);
+      background-color: var(--button-background-color);
       cursor: pointer;
       border-radius: 10px;
-      margin-bottom: 15px;
+      text-align: center;
+      text-decoration: none;
+      color: black;
     }
 
     .btn:hover {
-      background-color: #d0d0d0;
+      background-color: var(--button-hoover-color);
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<div class="frame">
+  <div th:replace="fragments/header :: headerFragment"></div>
+
   <div class="header">DRIFT</div>
 
   <div class="form-row">
     <div class="form-group">
       <label for="titel">Titel</label>
-      <input type="text" id="titel">
+      <input type="text" id="titel" name="titel">
     </div>
 
     <div class="form-group">
       <label for="dato">Dato</label>
-      <input type="date" id="dato">
+      <input type="date" id="dato" name="dato">
     </div>
   </div>
 
   <label for="beskrivelse">Skriv her...</label>
-  <textarea id="beskrivelse"></textarea>
+  <textarea id="beskrivelse" name="beskrivelse"></textarea>
 
   <div class="buttons">
-    <button class="btn">BEKRÆFT</button>
-    <a href="index.html" class="btn">TILBAGE</button></a>
+    <button class="btn" type="submit">BEKRÆFT</button>
 
   </div>
+
+  <div th:replace="fragments/footer :: footerFragment"></div>
 </div>
 
 </body>
