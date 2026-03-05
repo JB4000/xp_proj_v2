@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driftsliste</title>
+
+    <style>
+
+        :root {
+            --neon-blue: #00e5ff;
+            --neon-pink: #ff2fd1;
+            --neon-green: #00ff9c;
+            --neon-yellow: #ffd000;
+            --dark-bg: #0f0f1a;
+            --glass: rgba(255,255,255,0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: linear-gradient(
+                    rgba(5,5,15,0.9),
+                    rgba(5,5,15,0.95)
+            ),
+            url("../static/images/bowlingpins.jpg");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* FRAME */
+
+        .frame {
+            width: 94vw;
+            max-width: 1300px;
+            margin: 4vh auto;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            background: var(--glass);
+            box-shadow:
+                    0 0 60px rgba(0,229,255,0.2),
+                    0 0 120px rgba(255,47,209,0.15);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* TITLE */
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* LIST CONTAINER */
+
+        .list-container {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* Scrollbar */
+
+        .list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .list-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--neon-pink), var(--neon-blue));
+            border-radius: 10px;
+        }
+
+        /* CARD */
+
+        .maintenance-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px 25px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--neon-yellow);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .maintenance-card:hover {
+            transform: translateY(-6px);
+            box-shadow:
+                    0 0 20px var(--neon-yellow),
+                    0 0 40px rgba(255,208,0,0.4);
+        }
+
+        /* CARD CONTENT */
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .card-date {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .card-description {
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        /* STATUS BADGE */
+
+        .status-badge {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--neon-yellow);
+            color: black;
+            box-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        /* EMPTY STATE */
+
+        .empty-message {
+            text-align: center;
+            margin-top: 80px;
+            opacity: 0.6;
+            font-size: 1.2rem;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .frame {
+                padding: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="frame">
+
+    <div th:replace="fragments/header :: headerFragment"></div>
+
+    <div class="page-title">Driftsliste</div>
+
+    <div class="list-container">
+
+        <!-- Thymeleaf loop -->
+        <div th:if="${#lists.isEmpty(maintenancelist)}" class="empty-message">
+            Ingen registrerede fejl 🎳
+        </div>
+
+        <div th:each="item : ${maintenancelist}" class="maintenance-card">
+
+            <div class="status-badge">
+                ÅBEN
+            </div>
+
+            <div class="card-header">
+                <span th:text="${item.titel}">Titel</span>
+                <span class="card-date" th:text="${item.dato}">Dato</span>
+            </div>
+
+            <div class="card-description"
+                 th:text="${item.beskrivelse}">
+                Beskrivelse
+            </div>
+
+        </div>
+
+    </div>
+
+    <div th:replace="fragments/footer :: footerFragment"></div>
+
+</div>
+
+</body>
+</html>

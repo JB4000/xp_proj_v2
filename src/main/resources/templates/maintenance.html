@@ -123,136 +123,211 @@
 <!DOCTYPE html>
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drift</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drift</title>
 
-  <style>
-    :root {
-      --body-background-color: #dce8e6;
-      --frame-background-color: #c2d3db;
-      --border-color: #000000;
-      --button-background-color: #b1b9bb;
-      --button-hoover-color: #7d99a1;
-      --card-background-color: #b1b9cc;
-    }
+    <style>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--body-background-color);
-      overflow: hidden;
-      background-image: url("../static/images/bowlingpins.jpg");
-      background-size: cover;
-      background-position: 70% 37%;
-      background-repeat: no-repeat;
-      margin: 0;
-    }
+        :root {
+            --neon-pink: #ff2fd1;
+            --neon-blue: #00e5ff;
+            --neon-purple: #7c3aed;
+            --neon-green: #00ff9c;
+            --dark-bg: #0f0f1a;
+            --glass: rgba(255,255,255,0.07);
+        }
 
-    .frame {
-      width: 90vw;
-      margin: 3em auto;
-      border: 2px solid var(--border-color);
-      background: var(--frame-background-color);
-      border-radius: 20px;
-      padding: 40px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .header {
-      text-align: center;
-      font-size: 40px;
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: linear-gradient(
+                    rgba(5,5,15,0.9),
+                    rgba(5,5,15,0.95)
+            ),
+            url("../static/images/bowlingpins.jpg");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
 
-    .form-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 40px;
-      margin-bottom: 30px;
-    }
+        /* MAIN FRAME */
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
+        .frame {
+            width: 92vw;
+            max-width: 1100px;
+            margin: 4vh auto;
+            border-radius: 24px;
+            backdrop-filter: blur(18px);
+            background: var(--glass);
+            box-shadow:
+                    0 0 60px rgba(0,229,255,0.2),
+                    0 0 120px rgba(255,47,209,0.15);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
 
-    label {
-      margin-bottom: 8px;
-      font-weight: bold;
-      font-size: 18px;
-    }
+        /* TITLE */
 
-    input, textarea {
-      padding: 12px;
-      border: 2px solid var(--border-color);
-      border-radius: 10px;
-      font-size: 16px;
-    }
+        .header {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glowTitle 3s ease-in-out infinite alternate;
+        }
 
-    textarea {
-      resize: none;
-      height: 250px;
-      margin-bottom: 40px;
-    }
+        @keyframes glowTitle {
+            from { text-shadow: 0 0 10px var(--neon-pink); }
+            to   { text-shadow: 0 0 25px var(--neon-blue); }
+        }
 
-    .buttons {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+        /* FORM LAYOUT */
 
-    .btn {
-      width: 100%;
-      padding: 18px;
-      font-size: 18px;
-      font-weight: bold;
-      border: 2px solid var(--border-color);
-      background-color: var(--button-background-color);
-      cursor: pointer;
-      border-radius: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: black;
-    }
+        form {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
 
-    .btn:hover {
-      background-color: var(--button-hoover-color);
-    }
-  </style>
+        .form-row {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* LABELS */
+
+        label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+
+        /* INPUTS */
+
+        input,
+        textarea {
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 16px;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--neon-blue);
+            box-shadow:
+                    0 0 10px var(--neon-blue),
+                    0 0 20px rgba(0,229,255,0.4);
+            background: rgba(255,255,255,0.08);
+        }
+
+        textarea {
+            resize: none;
+            height: 220px;
+            margin-bottom: 50px;
+        }
+
+        /* BUTTON */
+
+        .buttons {
+            margin-top: auto;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 16px;
+            border: 2px solid var(--neon-green);
+            background: transparent;
+            color: var(--neon-green);
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.25s ease;
+        }
+
+        .btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow:
+                    0 0 15px var(--neon-green),
+                    0 0 30px var(--neon-green);
+            transform: translateY(-4px);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .form-row {
+                flex-direction: column;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
 <div class="frame">
-  <div th:replace="fragments/header :: headerFragment"></div>
 
-  <div class="header">DRIFT</div>
+    <div th:replace="fragments/header :: headerFragment"></div>
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="titel">Titel</label>
-      <input type="text" id="titel" name="titel">
-    </div>
+    <div class="header">DRIFT</div>
 
-    <div class="form-group">
-      <label for="dato">Dato</label>
-      <input type="date" id="dato" name="dato">
-    </div>
-  </div>
+    <form th:action="@{/maintenance}" method="post">
 
-  <label for="beskrivelse">Skriv her...</label>
-  <textarea id="beskrivelse" name="beskrivelse"></textarea>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="titel">Titel</label>
+                <input type="text" id="titel" name="titel" required>
+            </div>
 
-  <div class="buttons">
-    <button class="btn" type="submit">BEKRÆFT</button>
+            <div class="form-group">
+                <label for="dato">Dato</label>
+                <input type="date" id="dato" name="dato" required>
+            </div>
+        </div>
 
-  </div>
+        <label for="beskrivelse">Beskrivelse</label>
+        <textarea id="beskrivelse" name="beskrivelse" required></textarea>
 
-  <div th:replace="fragments/footer :: footerFragment"></div>
+        <div class="buttons">
+            <button class="btn" type="submit">BEKRÆFT</button>
+        </div>
+
+    </form>
+
+    <div th:replace="fragments/footer :: footerFragment"></div>
+
 </div>
 
 </body>

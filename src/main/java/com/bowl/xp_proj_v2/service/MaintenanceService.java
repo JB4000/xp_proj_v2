@@ -30,9 +30,11 @@
 package com.bowl.xp_proj_v2.service;
 
 import com.bowl.xp_proj_v2.model.Maintenance;
+import com.bowl.xp_proj_v2.model.MaintenanceList;
 import com.bowl.xp_proj_v2.repository.MaintenanceRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +47,17 @@ public class MaintenanceService {
         this.maintenanceRepository = maintenanceRepository;
     }
 
+    private final List<MaintenanceList> maintenanceList = new ArrayList<>();
     public List<Maintenance> getMaintenanceList() {
         return maintenanceRepository.findAll();
+    }
+
+    public void addItem(MaintenanceList item) {
+        maintenanceList.add(item);
+    }
+
+    public List<MaintenanceList> getAllItems() {
+        return maintenanceList;
     }
 
     public Optional<Maintenance> getMaintenanceById(int id) {
@@ -60,4 +71,6 @@ public class MaintenanceService {
     public boolean deleteMaintenance(int id) {
         return maintenanceRepository.deleteById(id);
     }
-}
+
+
+    }

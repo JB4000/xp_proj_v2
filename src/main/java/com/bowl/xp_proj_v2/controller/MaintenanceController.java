@@ -1,4 +1,4 @@
-//package com.bowl.xp_proj_v2.controller;
+package com.bowl.xp_proj_v2.controller;//package com.bowl.xp_proj_v2.controller;
 //
 //import com.bowl.xp_proj_v2.model.LaneReservationDto;
 //import com.bowl.xp_proj_v2.model.Maintenance;
@@ -30,9 +30,10 @@
 //
 //
 //}
-package com.bowl.xp_proj_v2.controller;
+
 
 import com.bowl.xp_proj_v2.model.Maintenance;
+import com.bowl.xp_proj_v2.model.MaintenanceList;
 import com.bowl.xp_proj_v2.service.MaintenanceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/maintenance")
 public class MaintenanceController {
 
     private final MaintenanceService maintenanceService;
@@ -50,25 +50,20 @@ public class MaintenanceController {
         this.maintenanceService = maintenanceService;
     }
 
-    // GET: hent/vis alle maintenance
-    @GetMapping
-    public String showMaintenanceList(Model model) {
-        List<Maintenance> maintenanceList = maintenanceService.getMaintenanceList();
-        model.addAttribute("maintenanceList", maintenanceList);
-        return "maintenance"; // Thymeleaf HTML-side: maintenance.html
+    @GetMapping("/maintenance")
+    public String showMaintenanceForm() {
+        return "maintenance";
     }
 
-    // POST: gem ny maintenance
-    @PostMapping
-    public String addMaintenance(@ModelAttribute Maintenance maintenance) {
-        maintenanceService.saveMaintenance(maintenance);
-        return "redirect:/maintenance";
-    }
+    @PostMapping("/maintenance")
+    public String addMaintenanceItem(
+            @RequestParam String title,
+            @RequestParam String date,
+            @RequestParam String description
+    ) {
+        MaintenanceList item = new MaintenanceList(title, date, description);
+        maintenanceService.addItem(item);
 
-    // GET: slet maintenance
-    @GetMapping("/delete/{id}")
-    public String deleteMaintenance(@PathVariable int id) {
-        maintenanceService.deleteMaintenance(id);
-        return "redirect:/maintenance";
+        return "redirect:/maintenancelist";
     }
 }

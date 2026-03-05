@@ -1,26 +1,136 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
+
 <header th:fragment="headerFragment" class="site-header">
-    <h1 class="company-name">Big XP Bowl</h1>
+
+    <div class="header-inner">
+        <div class="logo-wrapper">
+            <h1 class="company-name">Big XP Bowl</h1>
+            <span class="live-indicator"></span>
+        </div>
+
+        <div class="header-tagline">
+            🎳 Night Operations System
+        </div>
+    </div>
 
     <style>
+
+        .site-header {
+            height: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                    90deg,
+                    #0f0f1a,
+                    #14142b
+            );
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        /* Moving neon glow strip */
+        .site-header::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 200%;
+            height: 3px;
+            background: linear-gradient(
+                    90deg,
+                    #ff2fd1,
+                    #7c3aed,
+                    #00e5ff
+            );
+            animation: headerGlow 6s linear infinite;
+        }
+
+        @keyframes headerGlow {
+            from { transform: translateX(0); }
+            to { transform: translateX(50%); }
+        }
+
+        .header-inner {
+            width: 92%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* LOGO */
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .company-name {
             margin: 0;
-            font-size: 28px;
-            font-family: Arial, sans-serif;
-            color: #0c2c3b;
-            padding-top: 0.5rem;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 800;
+            background: linear-gradient(
+                    90deg,
+                    #ff2fd1,
+                    #00e5ff
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoPulse 3s ease-in-out infinite alternate;
         }
-        .site-header {
-            height: 10vh;
-            padding: 0 20px;
-            background-color: #9fbdcc;
-            border-bottom: 2px solid #000000; /* Line showing where header ends */
-            /*box-sizing: border-box;*/
-            display: flex;
+
+        @keyframes logoPulse {
+            from {
+                text-shadow: 0 0 10px #ff2fd1;
+            }
+            to {
+                text-shadow: 0 0 25px #00e5ff;
+            }
         }
+
+        /* LIVE DOT */
+
+        .live-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff9c;
+            box-shadow: 0 0 10px #00ff9c;
+            animation: pulseDot 1.8s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% {
+                box-shadow: 0 0 5px #00ff9c;
+                opacity: 1;
+            }
+            50% {
+                box-shadow: 0 0 20px #00ff9c;
+                opacity: 0.7;
+            }
+            100% {
+                box-shadow: 0 0 5px #00ff9c;
+                opacity: 1;
+            }
+        }
+
+        /* TAGLINE */
+
+        .header-tagline {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
     </style>
+
 </header>
+
 </body>
 </html>
